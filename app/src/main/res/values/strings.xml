@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">NoInSoft</string>
+    <string name="log_in_description">Система <font color='#676776'>управления процессом</font> взыскания задолженности</string>
+</resources>
