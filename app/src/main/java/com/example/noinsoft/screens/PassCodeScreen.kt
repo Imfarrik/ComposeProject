@@ -1,24 +1,30 @@
 package com.example.noinsoft.screens
 
+import android.widget.ImageView
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.modifier.modifierLocalConsumer
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -29,52 +35,73 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.viewinterop.AndroidView
 import com.example.noinsoft.R
 
 @Composable
-fun NumbersView(num1: String, num2: String, num3: String) {
+fun NumbersView(num1: String, num2: String, num3: String, isLast: Boolean = false) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        Button(
-            onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)
-        ) {
-            Text(
-                text = num1,
-                style = TextStyle(
-                    color = Color.Black,
-                    fontFamily = FontFamily(Font(R.font.commissioner_medium)),
-                    fontSize = 24.sp
+
+        Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
+            Button(
+                onClick = { /*TODO*/ },
+                colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
+                modifier = Modifier.padding(5.dp)
+            ) {
+                Text(
+                    text = num1,
+                    style = TextStyle(
+                        color = Color.Black,
+                        fontFamily = FontFamily(Font(R.font.muller_medium)),
+                        fontSize = 24.sp
+                    )
                 )
-            )
+            }
         }
-        Button(
-            onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)
-        ) {
-            Text(
-                text = num2,
-                style = TextStyle(
-                    color = Color.Black,
-                    fontFamily = FontFamily(Font(R.font.commissioner_medium)),
-                    fontSize = 24.sp
+
+        Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
+            Button(
+                onClick = { /*TODO*/ },
+                colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
+                modifier = Modifier.padding(5.dp)
+            ) {
+                Text(
+                    text = num2,
+                    style = TextStyle(
+                        color = Color.Black,
+                        fontFamily = FontFamily(Font(R.font.muller_medium)),
+                        fontSize = 24.sp
+                    )
                 )
-            )
+            }
         }
-        Button(
-            onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)
-        ) {
-            Text(
-                text = num3,
-                style = TextStyle(
-                    color = Color.Black,
-                    fontFamily = FontFamily(Font(R.font.commissioner_medium)),
-                    fontSize = 24.sp
-                )
-            )
+
+        Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
+            Button(
+                onClick = { /*TODO*/ },
+                colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
+                modifier = Modifier.padding(5.dp)
+            ) {
+                if (!isLast) {
+                    Text(
+                        text = num3,
+                        style = TextStyle(
+                            color = Color.Black,
+                            fontFamily = FontFamily(Font(R.font.muller_medium)),
+                            fontSize = 24.sp
+                        )
+                    )
+                } else {
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_clear),
+                        contentDescription = "clean"
+                    )
+                }
+            }
+
         }
 
     }
@@ -83,6 +110,10 @@ fun NumbersView(num1: String, num2: String, num3: String) {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun PassCodeView() {
+
+    val oval: MutableState<Int> = remember {
+        mutableStateOf(R.drawable.bg_pass_code_oval)
+    }
 
     Image(
         painter = painterResource(id = R.drawable.splash_bg),
@@ -155,11 +186,66 @@ fun PassCodeView() {
                 ) {
                     Column {
 
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 30.dp),
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            AndroidView(
+                                modifier = Modifier.padding(end = 22.dp),
+                                factory = {
+                                    ImageView(it)
+                                }
+                            )
+                            {
+                                it.setImageResource(oval.value)
+                            }
+                            AndroidView(
+                                modifier = Modifier.padding(end = 22.dp),
+                                factory = {
+                                    ImageView(it)
+                                }
+                            )
+                            {
+                                it.setImageResource(oval.value)
+                            }
+                            AndroidView(
+                                modifier = Modifier.padding(end = 22.dp),
+                                factory = {
+                                    ImageView(it)
+                                }
+                            )
+                            {
+                                it.setImageResource(oval.value)
+                            }
+                            AndroidView(
+                                modifier = Modifier.padding(end = 22.dp),
+                                factory = {
+                                    ImageView(it)
+                                }
+                            )
+                            {
+                                it.setImageResource(oval.value)
+                            }
+                            AndroidView(
+                                factory = {
+                                    ImageView(it)
+                                }
+                            )
+                            {
+                                it.setImageResource(oval.value)
+                            }
+                        }
+
                         NumbersView(num1 = "1", num2 = "2", num3 = "3")
 
                         NumbersView(num1 = "4", num2 = "5", num3 = "6")
 
                         NumbersView(num1 = "7", num2 = "8", num3 = "9")
+
+                        NumbersView(num1 = "", num2 = "0", num3 = "", true)
+
                     }
                 }
 
@@ -173,7 +259,11 @@ fun PassCodeView() {
                         onClick = { /*TODO*/ },
                         colors = ButtonDefaults.buttonColors(containerColor = Color.Red),
                         modifier = Modifier
-                            .fillMaxWidth()
+                            .fillMaxWidth(),
+                        elevation = ButtonDefaults.buttonElevation(
+                            defaultElevation = 3.dp,
+                            pressedElevation = 0.dp
+                        )
                     ) {
                         Text(
                             text = "Подтвердить",

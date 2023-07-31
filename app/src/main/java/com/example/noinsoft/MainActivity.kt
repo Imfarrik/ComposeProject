@@ -38,12 +38,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.noinsoft.screens.LoginScreen
+import com.example.noinsoft.screens.PassCodeView
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            LoginScreen()
+//            LoginScreen()
+            PassCodeView()
         }
     }
 }
