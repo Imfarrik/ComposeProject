@@ -36,7 +36,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.noinsoft.R
+import com.example.noinsoft.navigation.Screen
 
 @Composable
 fun NumbersView(num1: String, num2: String, num3: String, isLast: Boolean = false) {
@@ -64,7 +67,9 @@ fun NumbersView(num1: String, num2: String, num3: String, isLast: Boolean = fals
 
         Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
             Button(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    /*TODO*/
+                },
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
                 modifier = Modifier.padding(5.dp)
             ) {
@@ -107,9 +112,10 @@ fun NumbersView(num1: String, num2: String, num3: String, isLast: Boolean = fals
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun PassCodeView() {
+fun PassCodeView(
+    navController: NavController,
+) {
 
     val oval: MutableState<Int> = remember {
         mutableStateOf(R.drawable.bg_pass_code_oval)
@@ -256,7 +262,9 @@ fun PassCodeView() {
                     contentAlignment = Alignment.BottomCenter
                 ) {
                     Button(
-                        onClick = { /*TODO*/ },
+                        onClick = {
+                            navController.navigate(route = Screen.Home.route)
+                        },
                         colors = ButtonDefaults.buttonColors(containerColor = Color.Red),
                         modifier = Modifier
                             .fillMaxWidth(),
@@ -281,4 +289,10 @@ fun PassCodeView() {
 
     }
 
+}
+
+@Composable
+@Preview(showBackground = true)
+fun PassCodePreview() {
+    PassCodeView(navController = rememberNavController())
 }
